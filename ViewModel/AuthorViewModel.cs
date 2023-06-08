@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using static Bieb.Commands.Icommand;
 
@@ -17,7 +16,7 @@ namespace Bieb.ViewModel
         private Author selectedAuthor;
         private bool enableDeleteButton = false;
 
-        public ObservableCollection<Author> Authors { get; set; }
+        public ObservableCollection<Author> Authors { get; set; } = new();
         public Author SelectedAuthor
         {
             get => selectedAuthor; set
@@ -30,7 +29,6 @@ namespace Bieb.ViewModel
 
 
         public ICommand AddCommand { get; }
-        public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; set; }
 
 
@@ -41,13 +39,11 @@ namespace Bieb.ViewModel
                 .Options;
 
             _db = new BiebDbContext(options);
-            Authors = new ObservableCollection<Author>(_db.Authors.ToList()); //TODO: Use async loading (not in ctor??)
 
-            SaveCommand = new DelegateCommand(SaveAuthor);
+            LoadData();
+
             AddCommand = new DelegateCommand(AddAuthor);
             DeleteCommand = new RelayCommand(DeleteAuthor);
-
-
         }
 
         private void DeleteAuthor()
@@ -65,43 +61,22 @@ namespace Bieb.ViewModel
         //add command
         private void AddAuthor(object parameter)
         {
-            // Create a new person based on the input
-            var author = new Author();
-
-            var addAuthorWindow = new AddAuthorView();
+            var addAuthorWindow = new AddOrUpdateAuthorView(null);
             addAuthorWindow.ShowDialog();
 
-            // Add the person to the collection
-            Authors.Add(author);
-
+            LoadData();
         }
 
-        private void SaveAuthor(object parameter)
+        private void LoadData()
         {
-            // Get the author details from the input fields in the view
-            string authorName = ((AddAuthorView)Application.Current.MainWindow).txtAuthorName.Text;
+            var newData = _db.Authors.ToList();
 
-            // Create a new author object with the entered details
-            var newAuthor = new Author
+            Authors.Clear();
+            foreach (var item in newData)
             {
-                Name = authorName
-                // Set other author properties as needed
-            };
-
-            // Add the new author to the collection
-            Authors.Add(newAuthor);
-
-            // Save changes to the database
-            _db.SaveChanges();
-
-            // Close the AddAuthorView window and return to MainWindow
-            Application.Current.MainWindow.Close();
+                Authors.Add(item);
+            }
         }
-
-
-
-
-
 
     }
 }

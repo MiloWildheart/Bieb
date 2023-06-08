@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bieb.Models;
+using Bieb.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +19,14 @@ namespace Bieb.Views
     /// <summary>
     /// Interaction logic for AddAuthorView.xaml
     /// </summary>
-    public partial class AddAuthorView : Window
+    public partial class AddOrUpdateAuthorView : Window
     {
-        public AddAuthorView()
+        public AddOrUpdateAuthorView(Author? author)
         {
             InitializeComponent();
+
+            this.DataContext = new AddOrUpdateAuthorViewModel(author);
+
         }
     }
 }
