@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bieb.Models { 
@@ -24,9 +25,13 @@ public partial class BiebDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<Author>().HasData(
+    new Author { Id = 1, Name = "Ron", Items = "van Zuilichem" },
+    new Author { Id = 2, Name = "Polina", Items = "Kozlova" },
+    new Author { Id = 3, Name = "Tom", Items = "Sievers" });
+// other entities here
     }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
 }

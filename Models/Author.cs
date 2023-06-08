@@ -21,7 +21,7 @@ namespace Bieb.Models
             set
             {
                 _id = value;
-                RaisePropertyChange();
+                RaisePropertyChange(); //viewmodel
             }
         }
 
@@ -51,21 +51,6 @@ namespace Bieb.Models
             set
             {
                 _items = value;
-                RaisePropertyChange();
-            }
-        }
-
-
-        private ObservableCollection<Author> _authors;
-        public ObservableCollection<Author> Authors
-        {
-            get
-            {
-                return _authors;
-            }
-            set
-            {
-                _authors = value;
                 RaisePropertyChange();
             }
         }
