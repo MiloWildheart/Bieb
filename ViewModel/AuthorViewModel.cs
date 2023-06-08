@@ -98,21 +98,7 @@ namespace Bieb.ViewModel
             Application.Current.MainWindow.Close();
         }
 
-        //Delete command
-        private void DeleteAuthor(object parameter)
-        {
-            if (SelectedAuthor != null)
-            {
-                // Perform the delete operation on the selected author
-                Authors.Remove(SelectedAuthor);
-                _db.Authors.Remove(SelectedAuthor);
-                _db.SaveChanges();
-            }
-        }
-        private bool CanDeleteAuthor(object parameter)
-        {
-            return SelectedAuthor != null;
-        }
+
 
 
 
