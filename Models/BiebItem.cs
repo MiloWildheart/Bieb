@@ -10,8 +10,8 @@ namespace Bieb.Models
     class BiebItem : NotifyPropertyChanged
     {
         //getting and setting values
-        private int _id;
-        public int Id
+        private int? _id;
+        public int? Id
         {
             get
             {
@@ -25,8 +25,8 @@ namespace Bieb.Models
         }
 
         //getting and setting values
-        private string _titel;
-        public string Titel
+        private string? _titel;
+        public string? Titel
         {
             get
             {
@@ -38,8 +38,8 @@ namespace Bieb.Models
                 RaisePropertyChange(); //viewmodel
             }
         }
-        private string _mediaType;
-        public string MediaType
+        private string? _mediaType;
+        public string? MediaType
         {
             get
             {

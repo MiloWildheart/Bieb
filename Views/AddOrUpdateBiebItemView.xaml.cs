@@ -18,7 +18,7 @@ namespace Bieb.Views
     /// <summary>
     /// Interaction logic for AddOrUpdateBiebItemView.xaml
     /// </summary>
-    public partial class AddOrUpdateBiebItemView : Page
+    public partial class AddOrUpdateBiebItemView : Window
     {
         public AddOrUpdateBiebItemView()
         {

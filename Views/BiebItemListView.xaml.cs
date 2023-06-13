@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bieb.Models;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,5 +24,19 @@ namespace Bieb.Views
         {
             InitializeComponent();
         }
+        
+        
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BiebItemList.Items.Filter = FilterMethod;
+        }
+
+        private bool FilterMethod(object obj)
+        {
+            var BiebItem = (BiebItem)obj;
+
+            return BiebItem.Titel.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
+        
     }
 }

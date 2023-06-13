@@ -29,6 +29,9 @@ public partial class BiebDbContext : DbContext
     new Author { Id = 1, Name = "Ron", Items = "van Zuilichem" },
     new Author { Id = 2, Name = "Polina", Items = "Kozlova" },
     new Author { Id = 3, Name = "Tom", Items = "Sievers" });
+
+            modelBuilder.Entity<BiebItem>().HasData(
+                new BiebItem { Id = 1, Titel = "barneys fucking stupid time with C#", MediaType = "Boek"});
 // other entities here
     }
 

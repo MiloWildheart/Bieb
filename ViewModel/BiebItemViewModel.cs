@@ -20,11 +20,10 @@ namespace Bieb.ViewModel
         private BiebItem selectedBiebItem;
         private bool enableDeleteButton = false;
 
-        public ObservableCollection<BiebItem> Items { get; set; } = new();
+        public ObservableCollection<BiebItem> BiebItems { get; set; } = new();
         public BiebItem SelectedBiebItem
         {
-            get => selectedBiebItem;
-            set
+            get => selectedBiebItem;  set
             {
                 selectedBiebItem = value;
                 SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
@@ -45,7 +44,7 @@ namespace Bieb.ViewModel
 
             LoadData();
 
-            AddCommand = new DelegateCommand(AddBiebitem);
+            AddCommand = new DelegateCommand(AddBiebItem);
             DeleteCommand = new RelayCommand(DeleteBiebItem);
         }
         private void DeleteBiebItem()
@@ -56,13 +55,13 @@ namespace Bieb.ViewModel
             }
             _db.BiebItems.Remove(SelectedBiebItem);
             _db.SaveChanges();
-            Items.Remove(SelectedBiebItem);
+            BiebItems.Remove(SelectedBiebItem);
         }
 
-        private void AddBiebitem(object parameter)
+        private void AddBiebItem(object parameter)
         {
-            var addItemWindow = new AddOrUpdateBiebItemView(null);
-            addItemWindow.ShowDialog();
+            var addBiebItemWindow = new AddOrUpdateBiebItemView(null);
+            addBiebItemWindow.ShowDialog();
 
             LoadData();
         }
@@ -70,10 +69,10 @@ namespace Bieb.ViewModel
         {
             var newData = _db.BiebItems.ToList();
 
-            Items.Clear();
+            BiebItems.Clear();
             foreach (var item in newData)
             {
-                Items.Add(item);
+                BiebItems.Add(item);
             }
         }
     }
