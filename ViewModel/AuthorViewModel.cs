@@ -70,7 +70,8 @@ namespace Bieb.ViewModel
 
         private void LoadData()
         {
-            var newData = _db.Authors.ToList();
+
+            var newData = _db.Authors.Include(x => x.BiebItems).ToList();
 
             Authors.Clear();
             foreach (var item in newData)
