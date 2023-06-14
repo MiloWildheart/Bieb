@@ -40,22 +40,8 @@ namespace Bieb.Models
             }
         }
 
-        //TODO: Make a many to many with publications OBSERVABLECOLLECTION
-        private string _items;
-        public string Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-                RaisePropertyChange();
-            }
-        }
-
-
+        public ObservableCollection<BiebItem> BiebItems { get; set; }
+        
     }
 }
 

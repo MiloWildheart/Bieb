@@ -28,14 +28,12 @@ namespace Bieb.ViewModel
             IsEditing = author != null;
         }
 
-
         public void Save()
         {
             if (!IsEditing)
             {
                 _db.Authors.Add(Author);
             }
-
             _db.SaveChanges();
         }
     }

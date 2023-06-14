@@ -2,11 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Bieb.ViewModel
@@ -17,6 +12,7 @@ namespace Bieb.ViewModel
         public bool IsEditing { get; }
 
         public ICommand SaveCommand { get; }
+
         private BiebDbContext _db;
 
         public AddOrUpdateBiebItemViewModel (BiebItem? biebItem)
@@ -36,7 +32,7 @@ namespace Bieb.ViewModel
         {
             if (!IsEditing)
             {
-                _db.BiebItems.Add(BiebItem);
+                //_db.BiebItems.Add(BiebItem);
             }
             _db.SaveChanges();
         }

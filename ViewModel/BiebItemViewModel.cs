@@ -1,79 +1,80 @@
-﻿using Bieb.Models;
-using Bieb.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using static Bieb.Commands.Icommand;
+﻿//using Bieb.Models;
+//using Bieb.Views;
+//using CommunityToolkit.Mvvm.ComponentModel;
+//using CommunityToolkit.Mvvm.Input;
+//using Microsoft.EntityFrameworkCore;
+//using System;
+//using System.Collections.Generic;
+//using System.Collections.ObjectModel;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using System.Windows.Input;
+//using static Bieb.Commands.Icommand;
 
-namespace Bieb.ViewModel
-{
-    class BiebItemViewModel : ObservableObject
-    {
-        private readonly BiebDbContext _db;
-        private BiebItem selectedBiebItem;
-        private bool enableDeleteButton = false;
+//namespace Bieb.ViewModel
+//{
 
-        public ObservableCollection<BiebItem> BiebItems { get; set; } = new();
-        public BiebItem SelectedBiebItem
-        {
-            get => selectedBiebItem;  set
-            {
-                selectedBiebItem = value;
-                SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
-            }
-        }
-        public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
+//    public class BiebItemViewModel : ObservableObject
+//    {
+//        private readonly BiebDbContext _db;
+//        private BiebItem selectedBiebItem;
+//        private bool enableDeleteButton = false;
 
-        public ICommand AddCommand { get; }
-        public ICommand DeleteCommand { get; set; }
+//        public ObservableCollection<BiebItem> BiebItems { get; set; } = new();
+//        public BiebItem SelectedBiebItem
+//        {
+//            get => selectedBiebItem; set
+//            {
+//                selectedBiebItem = value;
+//                SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
+//            }
+//        }
+//        public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
 
-        public BiebItemViewModel()
-        {
-            var options = new DbContextOptionsBuilder<BiebDbContext>()
-                .UseSqlServer("Server=DESKTOP-UN4S556;User ID=robin;Password=;Database=BiebDB;Trusted_Connection=True;TrustServerCertificate=True;")
-                .Options;
+//        public ICommand AddCommand { get; }
+//        public ICommand DeleteCommand { get; set; }
 
-            _db = new BiebDbContext(options);
+//        public BiebItemViewModel()
+//        {
+//            var options = new DbContextOptionsBuilder<BiebDbContext>()
+//                .UseSqlServer("Server=DESKTOP-UN4S556;User ID=robin;Password=;Database=BiebDB;Trusted_Connection=True;TrustServerCertificate=True;")
+//                .Options;
 
-            LoadData();
+//            _db = new BiebDbContext(options);
 
-            AddCommand = new DelegateCommand(AddBiebItem);
-            DeleteCommand = new RelayCommand(DeleteBiebItem);
-        }
-        private void DeleteBiebItem()
-        {
-            if (SelectedBiebItem is null)
-            {
-                return;
-            }
-            _db.BiebItems.Remove(SelectedBiebItem);
-            _db.SaveChanges();
-            BiebItems.Remove(SelectedBiebItem);
-        }
+//            LoadData();
 
-        private void AddBiebItem(object parameter)
-        {
-            var addBiebItemWindow = new AddOrUpdateBiebItemView(null);
-            addBiebItemWindow.ShowDialog();
+//            AddCommand = new DelegateCommand(AddBiebItem);
+//            DeleteCommand = new RelayCommand(DeleteBiebItem);
+//        }
+//        private void DeleteBiebItem()
+//        {
+//            if (SelectedBiebItem is null)
+//            {
+//                return;
+//            }
+//            _db.BiebItems.Remove(SelectedBiebItem);
+//            _db.SaveChanges();
+//            BiebItems.Remove(SelectedBiebItem);
+//        }
 
-            LoadData();
-        }
-        private void LoadData()
-        {
-            var newData = _db.BiebItems.ToList();
+//        private void AddBiebItem(object parameter)
+//        {
+//            var addBiebItemWindow = new AddOrUpdateBiebItemView(null);
+//            addBiebItemWindow.ShowDialog();
 
-            BiebItems.Clear();
-            foreach (var item in newData)
-            {
-                BiebItems.Add(item);
-            }
-        }
-    }
-}
+//            LoadData();
+//        }
+//        private void LoadData()
+//        {
+//            var newData = _db.BiebItems.ToList();
+
+//            BiebItems.Clear();
+//            foreach (var item in newData)
+//            {
+//                BiebItems.Add(item);
+//            }
+//        }
+//    }
+//}

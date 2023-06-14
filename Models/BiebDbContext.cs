@@ -8,6 +8,8 @@ namespace Bieb.Models {
 public partial class BiebDbContext : DbContext
 {
     public DbSet<Author> Authors { get; set; }
+    public DbSet<BiebItem> BiebItems { get; set; }
+
     public BiebDbContext()
     {
     }
@@ -26,12 +28,12 @@ public partial class BiebDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
             modelBuilder.Entity<Author>().HasData(
-    new Author { Id = 1, Name = "Ron", Items = "van Zuilichem" },
-    new Author { Id = 2, Name = "Polina", Items = "Kozlova" },
-    new Author { Id = 3, Name = "Tom", Items = "Sievers" });
+    new Author { Id = 1, Name = "Ron", },
+    new Author { Id = 2, Name = "Polina",  },
+    new Author { Id = 3, Name = "Tom",  });
 
-            modelBuilder.Entity<BiebItem>().HasData(
-                new BiebItem { Id = 1, Titel = "barneys fucking stupid time with C#", MediaType = "Boek"});
+            //modelBuilder.Entity<BiebItem>().HasData(
+                //new BiebItem { Id = 1, Titel = "barneys fucking stupid time with C#", MediaType = "Boek"});
 // other entities here
     }
 
