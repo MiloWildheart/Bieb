@@ -35,6 +35,8 @@ namespace Bieb.ViewModel
                 _db.Authors.Add(Author);
             }
             _db.SaveChanges();
+
+            IsEditing = true;
         }
     }
 }
