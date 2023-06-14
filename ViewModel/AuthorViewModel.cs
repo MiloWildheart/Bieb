@@ -43,7 +43,7 @@ namespace Bieb.ViewModel
 
             LoadData();
 
-            AddCommand = new DelegateCommand(AddAuthor);
+            AddCommand = new RelayCommand(AddAuthor);
             DeleteCommand = new RelayCommand(DeleteAuthor);
         }
 
@@ -60,7 +60,7 @@ namespace Bieb.ViewModel
         }
 
         //add command
-        private void AddAuthor(object parameter)
+        private void AddAuthor()
         {
             var addAuthorWindow = new AddOrUpdateAuthorView(null);
             addAuthorWindow.ShowDialog();

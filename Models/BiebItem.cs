@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,9 +52,12 @@ namespace Bieb.Models
                 RaisePropertyChange(); //viewmodel
             }
         }
-       
 
-        public ObservableCollection<Author> Authors { get; set; }
-        
+
+        public ObservableCollection<Author> Authors { get; set; } = new();
+
+        //[NotMapped]
+        public string AuthorsAsString => string.Join(", ", Authors.Select(x => x.Name));
+
     }
 }

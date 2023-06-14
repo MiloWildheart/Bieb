@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bieb.Models;
+using Bieb.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace Bieb.Views
     /// </summary>
     public partial class AddOrUpdateBiebItemView : Window
     {
-        public AddOrUpdateBiebItemView()
+        public AddOrUpdateBiebItemView(BiebItem? biebItem)
         {
             InitializeComponent();
+            this.DataContext = new AddOrUpdateBiebItemViewModel(biebItem);
+
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Bieb.Migrations
 
                     b.HasIndex("BiebItemsId");
 
-                    b.ToTable("AuthorBiebItem");
+                    b.ToTable("AuthorBiebItem", (string)null);
                 });
 
             modelBuilder.Entity("Bieb.Models.Author", b =>
@@ -50,7 +50,7 @@ namespace Bieb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
 
                     b.HasData(
                         new
@@ -88,7 +88,7 @@ namespace Bieb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BiebItems");
+                    b.ToTable("BiebItems", (string)null);
                 });
 
             modelBuilder.Entity("AuthorBiebItem", b =>

@@ -7,22 +7,23 @@
         mc:Ignorable="d"
         Title="BiebItemListView" Height="450" Width="800">
     <Window.DataContext>
-        <local:Test/>
+        <local:BiebItemViewModel/>
     </Window.DataContext>
 
-    
-        <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
-            <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"  Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-            <Button Height="30" Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"></Button>
-            <Button Height="30" Command="{Binding AddCommand}" Content="Add"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,136,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
-            <ListView Name="BiebItemList" ItemsSource="{Binding BiebItem}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Name"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Items}" Header="Published Work"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-    
+
+    <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+        <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"  Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
+        <Button Height="30" Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"></Button>
+        <Button Height="30" Command="{Binding AddCommand}" Content="Add"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,136,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
+        <ListView Name="BiebItemList" ItemsSource="{Binding BiebItems}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Titel}" Header="Name"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding MediaType}" Header="Media Type"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding AuthorsAsString}" Header="Authors"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+
 </Window>
