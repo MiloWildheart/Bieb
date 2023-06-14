@@ -16,6 +16,7 @@ namespace Bieb.ViewModel
         private readonly BiebDbContext _db;
         private Author selectedAuthor;
         private bool enableDeleteButton = false;
+        private bool enableEditButton = false;
 
         public ObservableCollection<Author> Authors { get; set; } = new();
         public Author SelectedAuthor
@@ -24,13 +25,16 @@ namespace Bieb.ViewModel
             {
                 selectedAuthor = value;
                 SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
+                SetProperty(ref enableEditButton, value is not null, nameof(EnableEditButton));
             }
         }
         public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
+        public bool EnableEditButton { get => enableEditButton; set => enableEditButton = value; }
 
 
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand EditCommand { get; }
 
 
         public AuthorViewModel()
@@ -45,6 +49,7 @@ namespace Bieb.ViewModel
 
             AddCommand = new RelayCommand(AddAuthor);
             DeleteCommand = new RelayCommand(DeleteAuthor);
+            EditCommand = new RelayCommand(EditAuthor);
         }
 
         private void DeleteAuthor()
@@ -67,7 +72,19 @@ namespace Bieb.ViewModel
 
             LoadData();
         }
+        private void EditAuthor()
+        {
+            if(SelectedAuthor is null)
+            { 
+                return; 
+            }
 
+            var addAuthorWindow = new AddOrUpdateAuthorView(SelectedAuthor);
+            
+            addAuthorWindow.ShowDialog();
+
+            LoadData();
+        }
         private void LoadData()
         {
 

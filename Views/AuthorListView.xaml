@@ -10,11 +10,37 @@
         <local:AuthorViewModel />
     </Window.DataContext>
 
-    <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Add" Command="{Binding AddCommand}" />
+            <Button Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}"></Button>
+            <Button  Command="{Binding EditCommand}" Content="edit"  IsEnabled="{Binding EnableEditButton}"   />
+            
+        </StackPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" Margin="5" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+
+    <!--<Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
         <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"  Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
+        <StackPanel>
         <Button Height="30" Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"></Button>
-        <Button Height="30" Command="{Binding AddCommand}" Content="Add"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,136,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
-        <ListView Name="AuthorList" ItemsSource="{Binding Authors}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" >
+        <Button Height="30" Command="{Binding AddCommand}" Content="Add"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,236,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
+        <Button Height="30" Command="{Binding EditCommand}" Content="edit"  IsEnabled="{Binding EnableEditButton}"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,130,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
+        </StackPanel>
+            <ListView Name="AuthorList" ItemsSource="{Binding Authors}" BorderBrush="#cdcdcd" Margin="25,70,25,25" Padding="0" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name"/>
@@ -23,5 +49,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-    </Grid>
+    </Grid>-->
 </Window>
