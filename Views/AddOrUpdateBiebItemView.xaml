@@ -22,9 +22,15 @@
         <TextBox Text="{Binding BiebItem.Titel}" Grid.Row="1" Margin="10" x:Name="txtAuthorName"/>
         <Label Grid.Row="3" Content="Item Media Type:" Margin="10"/>
         <TextBox Text="{Binding BiebItem.MediaType}" Grid.Row="4" Margin="10" x:Name="txtAuthorItems"/>
-
-
-        <Button Grid.Row="6" Margin="10" Width="80" HorizontalAlignment="Center" Content="Save" Command="{Binding SaveCommand}"/>
+        <Label Grid.Row="5" Content="Authors" Margin="10"/>
+        <ListBox Grid.Row="6" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" Margin="5" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="7" Margin="0,125,0,-105" Width="80" HorizontalAlignment="Center" Content="Save" Command="{Binding SaveCommand}"/>
     </Grid>
-    
+
 </Window>

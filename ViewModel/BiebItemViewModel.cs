@@ -61,7 +61,8 @@ namespace Bieb.ViewModel
 
         private void AddBiebItem()
         {
-            var addBiebItemWindow = new AddOrUpdateBiebItemView(null);
+
+            var addBiebItemWindow = new AddOrUpdateBiebItemView(new BiebItem() { Titel = "een titel", MediaType = "iets", Authors = new() });
             addBiebItemWindow.ShowDialog();
 
             LoadData();

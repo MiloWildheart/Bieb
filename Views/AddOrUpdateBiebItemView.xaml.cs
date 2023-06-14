@@ -24,8 +24,8 @@ namespace Bieb.Views
     {
         public AddOrUpdateBiebItemView(BiebItem? biebItem)
         {
-            InitializeComponent();
             this.DataContext = new AddOrUpdateBiebItemViewModel(biebItem);
+            InitializeComponent();
 
         }
     }
