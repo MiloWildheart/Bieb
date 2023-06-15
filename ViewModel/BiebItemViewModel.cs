@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using static Bieb.Commands.Icommand;
 
@@ -41,6 +42,7 @@ namespace Bieb.ViewModel
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; }
+        public ICommand BackCommand { get; }
 
 
         public BiebItemViewModel()
@@ -56,6 +58,7 @@ namespace Bieb.ViewModel
             AddCommand = new RelayCommand(AddBiebItem);
             DeleteCommand = new RelayCommand(DeleteBiebItem);
             EditCommand = new RelayCommand(EditBiebItem);
+            BackCommand = new DelegateCommand(ExecuteBackCommand);
 
         }
         private void DeleteBiebItem()
@@ -90,6 +93,24 @@ namespace Bieb.ViewModel
             addAuthorWindow.ShowDialog();
 
             LoadData();
+        }
+
+        private void ExecuteBackCommand(object parameter)
+        {
+            // Create an instance of the MainWindow
+            MainWindow mainWindow = new MainWindow();
+
+            // Get the current window
+            Window currentWindow = Application.Current.MainWindow;
+
+            // Set the MainWindow as the new current window
+            Application.Current.MainWindow = mainWindow;
+
+            // Close the current window
+            currentWindow.Close();
+
+            // Show the MainWindow
+            mainWindow.Show();
         }
 
         private void LoadData()

@@ -14,6 +14,7 @@
             <Button Content="Add" Command="{Binding AddCommand}" Height="24" Width="45" />
             <Button Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}" Height="24" Width="45"></Button>
             <Button Command="{Binding EditCommand}" Content="Edit" IsEnabled="{Binding EnableEditButton}" Height="24" Width="45" />
+            <Button Height="23" Command="{Binding BackCommand}" Content="Back" Width="82" VerticalContentAlignment="Center" Padding="5" BorderThickness="1" BorderBrush="#E0E0E0" />
         </StackPanel>
 
         <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="1" BorderBrush="#E0E0E0" />
@@ -43,7 +44,9 @@
         <local:AuthorViewModel />
     </Window.DataContext>
     <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
-        --><!--<Grid>--><!--
+        -->
+<!--<Grid>-->
+<!--
         <Grid.RowDefinitions>
 
         </Grid.RowDefinitions>
@@ -58,11 +61,13 @@
 
 
         <TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged"  Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
-        --><!--<StackPanel>
+        -->
+<!--<StackPanel>
             <Button Height="30" Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}" Width="100" VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"></Button>
             <Button Height="30" Command="{Binding AddCommand}" Content="Add"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,236,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
             <Button Height="30" Command="{Binding EditCommand}" Content="edit"  IsEnabled="{Binding EnableEditButton}"  Width="100" VerticalContentAlignment="Center" Padding="5" Margin="0,25,130,0" VerticalAlignment="Top" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0"  />
-        </StackPanel>--><!--
+        </StackPanel>-->
+<!--
         <ListView Name="AuthorList" ItemsSource="{Binding Authors}" BorderBrush="#cdcdcd" Margin="25,71,25,99" Padding="0" >
             <ListView.View>
                 <GridView>

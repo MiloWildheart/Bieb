@@ -32,10 +32,12 @@ public partial class BiebDbContext : DbContext
     new Author { Id = 2, Name = "Polina",  },
     new Author { Id = 3, Name = "Tom",  });
 
-            //modelBuilder.Entity<BiebItem>().HasData(
-                //new BiebItem { Id = 1, Titel = "barneys fucking stupid time with C#", MediaType = "Boek"});
-// other entities here
-    }
+            modelBuilder.Entity<BiebItem>().HasData(
+         new { Id = 1, AuthorId = 1, Titel = "WPF is depricated", MediaType = "Book" },
+         new { Id = 2, AuthorId = 2, Titel = "How do i seed this correctly for dummies", MediaType = "Book" },
+         new { Id = 3, AuthorId = 3, Titel = "WPF is depricated a sequel", MediaType = "Book" }
+     );
+        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
