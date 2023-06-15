@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace Bieb.Views
 {
     /// <summary>
-    /// Interaction logic for AuthorListView.xaml
+    /// i only put filtertextbox options here.
     /// </summary>
     public partial class AuthorListView : Window
     {

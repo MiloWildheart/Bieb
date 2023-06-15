@@ -21,7 +21,7 @@ namespace Bieb.Models
             set
             {
                 _id = value;
-                RaisePropertyChange(); //viewmodel
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
 
@@ -36,7 +36,7 @@ namespace Bieb.Models
             set
             {
                 _titel = value;
-                RaisePropertyChange(); //viewmodel
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
         private string _mediaType;
@@ -49,12 +49,15 @@ namespace Bieb.Models
             set
             {
                 _mediaType = value;
-                RaisePropertyChange(); //viewmodel
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
 
+        // returns the names of the authors as a string
+        
 
         public ObservableCollection<Author> Authors { get; set; } = new();
+
 
         //[NotMapped]
         public string AuthorsAsString => string.Join(", ", Authors.Select(x => x.Name));

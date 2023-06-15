@@ -15,13 +15,14 @@ namespace Bieb.ViewModel
 {
     class AuthorViewModel : ObservableObject
     {
-        private readonly BiebDbContext _db;
-        private Author selectedAuthor;
-        private bool enableDeleteButton = false;
-        private bool enableEditButton = false;
 
-        public ObservableCollection<Author> Authors { get; set; } = new();
-        public Author SelectedAuthor
+        private readonly BiebDbContext _db;
+        private Author selectedAuthor; //currently selected author
+        private bool enableDeleteButton = false; //indicate whether delete button should be active
+        private bool enableEditButton = false; //indicate whether edit button should be active
+
+        public ObservableCollection<Author> Authors { get; set; } = new(); //collection of authors
+        public Author SelectedAuthor //currently selected author
         {
             get => selectedAuthor; set
             {
@@ -31,10 +32,10 @@ namespace Bieb.ViewModel
                 OnPropertyChanged(nameof(SelectedAuthor));
             }
         }
-        public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
-        public bool EnableEditButton { get => enableEditButton; set => enableEditButton = value; }
+        public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; } //indicate whether delete button should be active
+        public bool EnableEditButton { get => enableEditButton; set => enableEditButton = value; } //indicate whether Edit button should be active
 
-
+        // ICommands 
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; }
@@ -50,15 +51,16 @@ namespace Bieb.ViewModel
 
             _db = new BiebDbContext(options);
 
-            LoadData();
+            LoadData(); //load data from database
 
-            AddCommand = new RelayCommand(AddAuthor);
+            //commands
+            AddCommand = new RelayCommand(AddAuthor); // relay command is more up-to-date
             DeleteCommand = new RelayCommand(DeleteAuthor);
             EditCommand = new RelayCommand(EditAuthor);
-            BackCommand = new DelegateCommand(ExecuteBackCommand);
+            BackCommand = new DelegateCommand(ExecuteBackCommand); //delegate command because i had to
         }
 
-        private void DeleteAuthor()
+        private void DeleteAuthor() //delete selected author
         {
             if (SelectedAuthor is null)
             {
@@ -70,7 +72,7 @@ namespace Bieb.ViewModel
             Authors.Remove(SelectedAuthor);
         }
 
-        //add command
+        //add command opens new window
         private void AddAuthor()
         {
             var addAuthorWindow = new AddOrUpdateAuthorView(null);
@@ -78,7 +80,7 @@ namespace Bieb.ViewModel
 
             LoadData();
         }
-        private void EditAuthor()
+        private void EditAuthor() //edit selected author
         {
             if(SelectedAuthor is null)
             { 
@@ -110,9 +112,10 @@ namespace Bieb.ViewModel
             mainWindow.Show();
         }
 
+        //loads data from database
         private void LoadData()
         {
-
+            // Retrieves the list of authors from the database, including their associated BiebItems
             var newData = _db.Authors.Include(x => x.BiebItems).ToList();
 
             Authors.Clear();

@@ -21,7 +21,7 @@ namespace Bieb.Models
             set
             {
                 _id = value;
-                RaisePropertyChange(); //viewmodel
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
 
@@ -36,10 +36,10 @@ namespace Bieb.Models
             set
             {
                 _name = value;
-                RaisePropertyChange();
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
-
+        // The collection of BiebItems associated with the author
         public ObservableCollection<BiebItem> BiebItems { get; set; }
         
     }

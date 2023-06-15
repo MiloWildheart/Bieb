@@ -38,7 +38,7 @@ namespace Bieb.ViewModel
         public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
         public bool EnableEditButton { get => enableEditButton; set => enableEditButton = value; }
 
-
+        //Icommands
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; }
@@ -55,13 +55,13 @@ namespace Bieb.ViewModel
 
             LoadData();
 
-            AddCommand = new RelayCommand(AddBiebItem);
+            AddCommand = new RelayCommand(AddBiebItem); //relay command is more up-to-date
             DeleteCommand = new RelayCommand(DeleteBiebItem);
             EditCommand = new RelayCommand(EditBiebItem);
-            BackCommand = new DelegateCommand(ExecuteBackCommand);
+            BackCommand = new DelegateCommand(ExecuteBackCommand); //delegate command because i had to
 
         }
-        private void DeleteBiebItem()
+        private void DeleteBiebItem() //delete selected biebitem
         {
             if (SelectedBiebItem is null)
             {
@@ -72,7 +72,7 @@ namespace Bieb.ViewModel
             BiebItems.Remove(SelectedBiebItem);
         }
 
-        private void AddBiebItem()
+        private void AddBiebItem() //add or update window opens
         {
 
             var addBiebItemWindow = new AddOrUpdateBiebItemView(null);
@@ -81,7 +81,7 @@ namespace Bieb.ViewModel
             LoadData();
         }
 
-        private void EditBiebItem()
+        private void EditBiebItem() //add or update window opens with selected biebitem data loaded
         {
             if (SelectedBiebItem is null)
             {
