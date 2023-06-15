@@ -21,7 +21,7 @@ namespace Bieb.Models
             set
             {
                 _id = value;
-                RaisePropertyChange();
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
 
@@ -36,41 +36,12 @@ namespace Bieb.Models
             set
             {
                 _name = value;
-                RaisePropertyChange();
+                RaisePropertyChange(); // Notify the view model that the property has changed
             }
         }
-
-
-        private string _items;
-        public string Items
-        {
-            get
-            {
-                return _items;
-            }
-            set
-            {
-                _items = value;
-                RaisePropertyChange();
-            }
-        }
-
-
-        private ObservableCollection<Author> _authors;
-        public ObservableCollection<Author> Authors
-        {
-            get
-            {
-                return _authors;
-            }
-            set
-            {
-                _authors = value;
-                RaisePropertyChange();
-            }
-        }
-
-
+        // The collection of BiebItems associated with the author
+        public ObservableCollection<BiebItem> BiebItems { get; set; }
+        
     }
 }
 
