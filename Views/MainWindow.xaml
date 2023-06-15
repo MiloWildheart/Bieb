@@ -6,27 +6,21 @@
         xmlns:local="clr-namespace:Bieb.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
-        <local:AuthorViewModel />
-    </Window.DataContext>
-
-    <Grid>
+    <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
-    
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Add" Command="{Binding AddCommand}" />
-            <Button Command="{Binding DeleteCommand}" Content="Delete" IsEnabled="{Binding EnableDeleteButton}"></Button>        </StackPanel>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Authors}" SelectedItem="{Binding SelectedAuthor}" HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}" Margin="5" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
+        <!-- Title -->
+        <TextBlock Text="Welcome to Our Library" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,8,0,0" Grid.RowSpan="3" />
+
+        <!-- Subtitle -->
+        <TextBlock Grid.Row="1" Text="Please select where you want to go" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,52,0,0" Grid.RowSpan="2" />
+        <Button Grid.Row ="2" x:Name="Authors" Content="Go to Authors" Click="GoToAuthorsButton_Click" Margin="34,159,404,125"  />
+        <Button Grid.Row="2" x:Name="BiebItems" Content="Go to Bieb Items" Click="GoToBiebItemsButton_Click" Margin="434,159,31,125"  />
+
     </Grid>
 </Window>

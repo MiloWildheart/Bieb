@@ -26,21 +26,21 @@ namespace Bieb.Views
             InitializeComponent();
         }
 
-        //private void AuthorList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    // Your event handling logic here
-        //}
+        private void AuthorList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Your event handling logic here
+        }
 
-        //private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    AuthorList.Items.Filter = FilterMethod;
-        //}
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AuthorList.Items.Filter = FilterMethod;
+        }
 
-        //private bool FilterMethod(object obj)
-        //{
-        //    var Author = (Author)obj;
+        private bool FilterMethod(object obj)
+        {
+            var Author = (Author)obj;
 
-        //    return Author.Name.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
-        //}
+            return Author.Name.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
+        }
     }
 }

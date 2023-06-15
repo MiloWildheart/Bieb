@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
 using static Bieb.Commands.Icommand;
+using System.ComponentModel;
 
 namespace Bieb.ViewModel
 {
@@ -26,6 +27,7 @@ namespace Bieb.ViewModel
                 selectedAuthor = value;
                 SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
                 SetProperty(ref enableEditButton, value is not null, nameof(EnableEditButton));
+                OnPropertyChanged(nameof(SelectedAuthor));
             }
         }
         public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
@@ -96,6 +98,9 @@ namespace Bieb.ViewModel
                 Authors.Add(item);
             }
         }
+        protected new virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
     }
 }

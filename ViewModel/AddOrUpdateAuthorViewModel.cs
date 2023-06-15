@@ -9,7 +9,14 @@ namespace Bieb.ViewModel
     public class AddOrUpdateAuthorViewModel : ObservableObject
     {
         public Author Author { get; }
-        public bool IsEditing { get; }
+        
+        private bool _isEditing;
+
+        public bool IsEditing
+        {
+            get { return _isEditing; }
+            set { SetProperty(ref _isEditing, value); }
+        }
 
         public ICommand SaveCommand { get; }
 

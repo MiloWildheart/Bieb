@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Bieb.ViewModel
         private readonly BiebDbContext _db;
         private BiebItem selectedBiebItem;
         private bool enableDeleteButton = false;
+        private bool enableEditButton = false;
 
         public ObservableCollection<BiebItem> BiebItems { get; set; } = new();
         public BiebItem SelectedBiebItem
@@ -28,12 +30,18 @@ namespace Bieb.ViewModel
             {
                 selectedBiebItem = value;
                 SetProperty(ref enableDeleteButton, value is not null, nameof(EnableDeleteButton));
+                SetProperty(ref enableEditButton, value is not null, nameof(EnableEditButton));
+                OnPropertyChanged(nameof(SelectedBiebItem));
             }
         }
         public bool EnableDeleteButton { get => enableDeleteButton; set => enableDeleteButton = value; }
+        public bool EnableEditButton { get => enableEditButton; set => enableEditButton = value; }
+
 
         public ICommand AddCommand { get; }
         public ICommand DeleteCommand { get; set; }
+        public ICommand EditCommand { get; }
+
 
         public BiebItemViewModel()
         {
@@ -47,6 +55,8 @@ namespace Bieb.ViewModel
 
             AddCommand = new RelayCommand(AddBiebItem);
             DeleteCommand = new RelayCommand(DeleteBiebItem);
+            EditCommand = new RelayCommand(EditBiebItem);
+
         }
         private void DeleteBiebItem()
         {
@@ -67,6 +77,21 @@ namespace Bieb.ViewModel
 
             LoadData();
         }
+
+        private void EditBiebItem()
+        {
+            if (SelectedBiebItem is null)
+            {
+                return;
+            }
+
+            var addAuthorWindow = new AddOrUpdateBiebItemView(SelectedBiebItem);
+
+            addAuthorWindow.ShowDialog();
+
+            LoadData();
+        }
+
         private void LoadData()
         {
             
@@ -79,5 +104,8 @@ namespace Bieb.ViewModel
                 BiebItems.Add(item);
             }
         }
+        protected new virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
